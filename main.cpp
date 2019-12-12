@@ -1,0 +1,20 @@
+#include "mainwindow.h"
+#include <QDebug>
+#include <QApplication>
+#include <QCommandLineParser>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QCommandLineParser parser;
+    QCommandLineOption testOption(QStringList() << "t" << "test", QStringLiteral("Test"));
+    parser.addOption(testOption);
+    parser.process(a);
+    bool isTest = parser.isSet(testOption);
+    if(isTest){
+        qDebug()<<"Test mode";
+    }else{
+        qDebug()<<"normal mode";
+    }
+    return 0;
+}
