@@ -7,8 +7,8 @@ jobs:
     name: Windows Build
     runs-on: windows-latest
     steps:
+      - name: Setup
         uses: ilammy/msvc-dev-cmd@v1
-      - name: Checkout
         uses: actions/checkout@v2-beta
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
