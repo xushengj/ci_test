@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   windows:
-    name: Windows Build and Test
+    name: Windows Test
     runs-on: windows-latest
     steps:
       - name: MSVC Environment Setup
@@ -22,7 +22,7 @@ jobs:
       - name: Test
         run: cmd.exe /C "start /wait debug/ci_test.exe --test & exit /b errorlevel"
   linux:
-    name: Linux Test
+    name: Linux (Build only)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,13 +30,18 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
       - name: Run QMake
-        run: qmake "CONFIG+=debug" ci_test.pro
+        run: qmake ci_test.pro
       - name: Build
         run: make
-      - name: Directory Setup
-        run: mkdir -p temp_ci
-      - name: Test
-        run: |
-          sudo ln -sf $Qt5_Dir/plugins/platforms/ /usr/bin/
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$Qt5_Dir/bin
-          cd temp_ci && ../ci_test --test
+  mac:
+    name: Mac (Build only)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2-beta
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+      - name: Run QMake
+        run: qmake ci_test.pro
+      - name: Build
+        run: make
