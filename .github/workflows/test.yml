@@ -20,4 +20,4 @@ jobs:
       - name: Deploy
         run: windeployqt.exe debug
       - name: Test
-        run: pwsh.EXE -Command "exit (Start-Process -FilePath 'debug/ci_test.exe' -argumentlist '--test' -wait -Passthru).ExitCode"
+        run: cmd.exe /C "start /wait debug/ci_test.exe --test & exit /b errorlevel"
