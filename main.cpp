@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
     bool isTest = parser.isSet(testOption);
     if(isTest){
         fprintf(stderr,"Test mode\n");
-        return 1;
     }else{
         fprintf(stderr,"normal mode\n");
+        return 1;
     }
     return 0;
 }
