@@ -20,4 +20,4 @@ jobs:
       - name: Deploy
         run: windeployqt.exe debug
       - name: Test
-        run: /WAIT debug/ci_test.exe --test
+        run: debug/ci_test.exe --test
