@@ -37,5 +37,6 @@ jobs:
         run: mkdir -p temp_ci
       - name: Test
         run: |
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$Qt5_Dir/bin:$Qt5_Dir/plugins
+          sudo ln -sf $Qt5_Dir/plugins/platforms/ /usr/bin/
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$Qt5_Dir/bin
           cd temp_ci && ../ci_test --test
