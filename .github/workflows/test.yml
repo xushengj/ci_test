@@ -32,6 +32,6 @@ jobs:
       - name: Run QMake
         run: qmake "CONFIG+=debug" ci_test.pro
       - name: Build
-        run: make debug
+        run: make
       - name: Test
         run: debug/ci_test.exe --test
