@@ -36,6 +36,6 @@ jobs:
       - name: Directory Setup
         run: mkdir -p temp_ci
       - name: Test
-        run: cd temp_ci && ../ci_test --test
-        env:
-          LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${Qt5_Dir}/bin:${Qt5_Dir}/plugins
+        run: |
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$Qt5_Dir/bin:$Qt5_Dir/plugins
+          cd temp_ci && ../ci_test --test
