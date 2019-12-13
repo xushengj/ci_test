@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QCommandLineParser>
+#include <cstdio>
 
 int main(int argc, char *argv[])
 {
@@ -12,9 +13,10 @@ int main(int argc, char *argv[])
     parser.process(a);
     bool isTest = parser.isSet(testOption);
     if(isTest){
-        qDebug()<<"Test mode";
+        fprintf(stderr,"Test mode\n");
+        return 1;
     }else{
-        qDebug()<<"normal mode";
+        fprintf(stderr,"normal mode\n");
     }
     return 0;
 }

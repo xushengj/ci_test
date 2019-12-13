@@ -1,4 +1,4 @@
-name: Windows Build Test
+name: Build Test
 
 on: [push]
 
@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v2-beta
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
-        id: qt_install
       - name: Run QMake
         run: qmake ci_test.pro
       - name: Build
-        run: nmake
+        run: nmake debug
+      - name: Deploy
+        run: windeployqt.exe debug
       - name: Test
-        run: release/ci_test.exe --test
+        run: START /WAIT debug/ci_test.exe --test
