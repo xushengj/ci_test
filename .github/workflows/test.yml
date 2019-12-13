@@ -30,7 +30,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
       - name: Run QMake
-        run: qmake ci_test.pro
+        run: qmake "CONFIG+=debug" ci_test.pro
       - name: Build
         run: make debug
       - name: Test
