@@ -33,5 +33,7 @@ jobs:
         run: qmake "CONFIG+=debug" ci_test.pro
       - name: Build
         run: make
+      - name: Directory Setup
+        run: mkdir -p temp_ci
       - name: Test
-        run: ci_test --test
+        run: cd temp_ci && ../ci_test --test
