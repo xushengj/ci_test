@@ -1,13 +1,13 @@
 name: Build Test
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build:
-    name: Windows Build
+  windows_test:
+    name: Windows Build and Test
     runs-on: windows-latest
     steps:
-      - name: Setup
+      - name: MSVC Environment Setup
         uses: ilammy/msvc-dev-cmd@v1
       - name: Checkout
         uses: actions/checkout@v2-beta
@@ -20,4 +20,4 @@ jobs:
       - name: Deploy
         run: windeployqt.exe debug
       - name: Test
-        run: debug/ci_test.exe --test
+        run: powershell -Command "exit (Start-Process -FilePath 'debug/ci_test.exe' -argumentlist '--test' -wait -Passthru).ExitCode"
