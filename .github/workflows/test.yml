@@ -34,4 +34,4 @@ jobs:
       - name: Build
         run: make
       - name: Test
-        run: debug/ci_test.exe --test
+        run: ci_test --test
